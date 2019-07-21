@@ -46,7 +46,7 @@ INTRODUCTION					*themis-introduction*
 
 
 Requirements:
-- Vim 7.4 or later
+- Vim 8.0 or later
 
 Latest version:
 https://github.com/thinca/vim-themis

@@ -23,10 +23,6 @@ let s:func_aliases = {
 \   'not_equal': 'not_equals',
 \ }
 
-" Note: v:true and v:false were added at Vim 7.4.1154
-let s:true = get(v:, 'true', 1)
-let s:false = get(v:, 'false', 0)
-
 for s:aliased_type in keys(s:type_aliases)
   let s:func_aliases['is_' . s:aliased_type] =
   \   'is_' . s:type_aliases[s:aliased_type]
@@ -47,7 +43,7 @@ function! s:assert_skip(mes) abort
 endfunction
 
 function! s:assert_true(value, ...) abort
-  if a:value isnot 1 && a:value isnot s:true
+  if a:value isnot 1 && a:value isnot v:true
     throw s:failure([
     \   'The true value was expected, but it was not the case.',
     \   '',
@@ -59,7 +55,7 @@ function! s:assert_true(value, ...) abort
 endfunction
 
 function! s:assert_false(value, ...) abort
-  if a:value isnot 0 && a:value isnot s:false
+  if a:value isnot 0 && a:value isnot v:false
     throw s:failure([
     \   'The false value was expected, but it was not the case.',
     \   '',
@@ -72,7 +68,7 @@ endfunction
 
 function! s:assert_truthy(value, ...) abort
   let t = type(a:value)
-  if !(t == type(0) || t == type('') || t == type(s:true)) || !a:value
+  if !(t == type(0) || t == type('') || t == type(v:true)) || !a:value
     throw s:failure([
     \   'The truthy value was expected, but it was not the case.',
     \   '',
@@ -85,7 +81,7 @@ endfunction
 
 function! s:assert_falsy(value, ...) abort
   let t = type(a:value)
-  if (t != type(0) && t != type('') && t != type(s:false)) || a:value
+  if (t != type(0) && t != type('') && t != type(v:false)) || a:value
     throw s:failure([
     \   'The falsy value was expected, but it was not the case.',
     \   '',
