@@ -7,10 +7,10 @@ matrix:
   include:
     - os: linux
       env:
-        - VIM_VERSION=v7.4
+        - VIM_VERSION=v8.0.0000
     - os: linux
       env:
-        - VIM_VERSION=v8.0.0000
+        - VIM_VERSION=v8.1.0005
     - os: linux
       env:
         - VIM_VERSION=master
